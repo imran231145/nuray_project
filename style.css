@@ -82,10 +82,8 @@ body {
     transition: all 0.5s ease;
 }
 
-/* Скрываем/затемняем неактивные слайды */
 .slide:not(.active) {
-    opacity: 0.15;
-    pointer-events: none;
+    display: none !important;
 }
 
 /* Текстовая зона (ИСПРАВЛЕНО) */
@@ -317,4 +315,63 @@ display: flex;
 #slide-counter {
     color: #ffffff;
     font-size: 0.9rem;
+}
+
+/* --- СТИЛИ ДЛЯ СТАРТОВОГО СЛАЙДА (ПЛАНА) --- */
+.plan-slide-info {
+    justify-content: center !important; /* Центрируем контент по вертикали, чтобы кнопка не уходила вниз */
+    padding-top: 20px !important;       /* Уменьшаем верхний отступ */
+    padding-bottom: 20px !important;    /* Добавляем нижний отступ */
+}
+
+/* Красивый нумерованный список */
+.project-plan-list {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding-left: 25px; /* Увеличили отступ, чтобы текст не сливался с цифрами */
+    color: #ccc;
+    text-align: left;
+}
+
+.project-plan-list li {
+    font-size: 1.05rem; /* Чуть-чуть уменьшили размер, чтобы всё точно поместилось по высоте */
+    margin-bottom: 8px; /* Немного уменьшили расстояние между строками */
+    line-height: 1.3;
+    color: #aaaaaa;
+    transition: color 0.3s ease;
+}
+
+.project-plan-list li::marker {
+    color: #0066ff;
+    font-weight: bold;
+}
+
+.project-plan-list li:hover {
+    color: #ffffff;
+}
+
+/* Кнопка Старт */
+.start-btn {
+    align-self: flex-start;
+    background-color: #0066ff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 25px; /* Сделали кнопку чуть компактнее, чтобы она не обрезалась */
+    font-size: 0.95rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 5px; /* Отступ сверху для кнопки */
+}
+
+.start-btn:hover {
+    background-color: #0052cc;
+    box-shadow: 0 6px 20px rgba(0, 102, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.start-btn:active {
+    transform: translateY(0);
 }

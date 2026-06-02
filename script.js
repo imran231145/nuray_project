@@ -4,13 +4,13 @@ document.addEventListener("DOMContentLoaded", function() {
     var prevBtn = document.getElementById("prev-btn");
     var nextBtn = document.getElementById("next-btn");
     var counter = document.getElementById("slide-counter");
+    var startBtn = document.getElementById("start-project-btn"); // Новая кнопка
 
-    var activeIdx = 1;
-    var totalSlides = slides.length;
+    var activeIdx = 0; // ИСПРАВЛЕНО: начинаем со слайда 0 (План проекта)
+    var totalSlides = slides.length - 1; // Количество рабочих слайдов (без стартового)
 
     function showSlide(slideNum) {
-        if (slideNum < 1 || slideNum > totalSlides) return;
-
+        // slideNum может быть 0 (стартовый) или от 1 до 5
         activeIdx = slideNum;
 
         // Переключение активного слайда
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
-        // Переключение активной кнопки слева
+        // Переключение активной кнопки слева (01-05)
         buttons.forEach(function(btn) {
             if (parseInt(btn.getAttribute("data-slide")) === slideNum) {
                 btn.classList.add("active");
@@ -32,11 +32,22 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
-        // Обновление счетчика текстом
-        counter.textContent = slideNum + " / " + totalSlides;
+        // Обновление счетчика текстом (если на плане — пишем "Plan", если на слайдах — цифры)
+        if (slideNum === 0) {
+            counter.textContent = "Plan / " + totalSlides;
+        } else {
+            counter.textContent = slideNum + " / " + totalSlides;
+        }
     }
 
-    // Клик по кнопкам 01-05
+    // Клик по кнопке "Start Project"
+    if (startBtn) {
+        startBtn.addEventListener("click", function() {
+            showSlide(1); // Переключает на Слайд 01
+        });
+    }
+
+    // Клик по боковым кнопкам 01-05
     buttons.forEach(function(button) {
         button.addEventListener("click", function() {
             var num = parseInt(button.getAttribute("data-slide"));
@@ -46,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Кнопка Назад
     prevBtn.addEventListener("click", function() {
-        if (activeIdx > 1) {
+        if (activeIdx > 0) { // Можно вернуться на план (0)
             showSlide(activeIdx - 1);
         }
     });
@@ -57,4 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
             showSlide(activeIdx + 1);
         }
     });
+
+    // Инициализация первого показа
+    showSlide(0);
 });
