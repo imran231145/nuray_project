@@ -1,0 +1,320 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- ЛЕВАЯ ПАНЕЛЬ НАВИГАЦИИ --- */
+.sidebar {
+    width: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #050505;
+    border-right: 1px solid #1c1c1c;
+    z-index: 10;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.nav-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    background-color: #111111;
+    border: 1px solid #222222;
+    color: #666666;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    color: #ffffff;
+    border-color: #444444;
+}
+
+/* Активная кнопка */
+.nav-btn.active {
+    background-color: #0066ff;
+    color: #ffffff;
+    border-color: #0066ff;
+    box-shadow: 0 0 15px rgba(0, 102, 255, 0.4);
+}
+
+/* --- КОНТЕЙНЕР ДЛЯ СЛАЙДОВ --- */
+.slider-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    padding-bottom: 100px;
+    gap: 25px;
+    overflow-y: auto;
+}
+
+/* --- СТИЛИ СЛАЙДОВ (ИСПРАВЛЕНО) --- */
+.slide {
+    display: flex;
+    background-color: #0d0d0d;
+    border: 1px solid #1a1a1a;
+    border-radius: 16px;
+    height: 380px;      /* Четко задаем высоту слайда */
+    min-height: 380px;
+    max-height: 380px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+/* Скрываем/затемняем неактивные слайды */
+.slide:not(.active) {
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+/* Текстовая зона (ИСПРАВЛЕНО) */
+.slide-info {
+    width: 40%;         /* Фиксируем ширину текста, чтобы картинки его не сжимали */
+    min-width: 320px;   /* Минимальный порог, чтобы верстка не ломалась */
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    background-color: #0d0d0d;
+    z-index: 2;
+}
+
+.slide-num {
+    position: absolute;
+    top: 25px;
+    left: 40px;
+    background-color: #0066ff;
+    color: #ffffff;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.slide-info h2 {
+    font-size: 2rem;
+    line-height: 1.3;
+    margin-bottom: 15px;
+}
+
+.subtitle, .opinion-text {
+    color: #888888;
+    font-size: 1rem;
+}
+
+/* Внутренние списки элементов */
+.grid-features {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.feature-item .icon {
+    font-size: 1.5rem;
+}
+
+.feature-item h3 {
+    font-size: 0.95rem;
+    color: #ffffff;
+}
+
+.feature-item p {
+    font-size: 0.85rem;
+    color: #666666;
+}
+
+.grid-features.tips {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.feature-item.vertical {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+/* --- МЕДИА ЗОНА ДЛЯ КАРТИНОК (ОКОНЧАТЕЛЬНЫЙ ФИКС) --- */
+.slide-media {
+    flex: 1.8;          /* Занимает всю правую часть слайда */
+    display: flex;
+    background-color: #050505;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Стили для реальных тегов картинок <img> внутри медиазоны */
+.slide-media img {
+    height: 100%;
+    object-fit: cover;  /* Картинка заполняет выделенный ей блок без искажений */
+    display: block;
+}
+
+/* Используем flex-basis и flex-grow, чтобы браузер жестко 
+   и пропорционально делил ширину медиазоны между картинками 
+*/
+
+/* 1 Слайд: одна картинка на 100% ширины */
+.single-img img {
+    flex: 1;
+    width: 100%;
+}
+
+/* 2 Слайд: три картинки делят пространство строго поровну */
+.triple-img img {
+    flex: 1;
+    width: 33.333%;
+    border-left: 1px solid #1a1a1a;
+}
+
+/* 3 Слайд: две картинки делят пространство 50% на 50% */
+.double-img img {
+    flex: 1;
+    width: 50%;
+    border-left: 1px solid #1a1a1a;
+}
+
+/* 4 Слайд: четыре картинки делят пространство по 25% */
+.quad-img img {
+    flex: 1;
+    width: 25%;
+    border-left: 1px solid #1a1a1a;
+}
+
+/* Старые плейсхолдеры (на случай, если где-то еще нет картинок) */
+.image-placeholder {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid #1a1a1a;
+    color: #444444;
+    font-size: 0.9rem;
+    background-color: #090909;
+}
+
+/* --- НИЖНЯЯ ПАНЕЛЬ СТРЕЛОК --- */
+.bottom-controls {
+    position: fixed;
+    bottom: 25px;
+    left: calc(50% + 45px);
+    transform: translateX(-50%);
+    background-color: rgba(10, 10, 10, 0.9);
+    border: 1px solid #222222;
+    padding: 8px 20px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    z-index: 10;
+}
+
+.ctrl-btn {
+    background: none;
+    border: none;
+    color: #888888;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.ctrl-btn:hover {
+    color: #ffffff;
+}
+
+#slide-counter {
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+/* Стили для реальных тегов картинок <img> внутри медиазоны */
+.slide-media img {
+    height: 100%;
+    object-fit: cover; /* Умное кадрирование: заполняет блок без растягивания */
+    display: block;
+}
+
+/* Автоматическое распределение ширины картинок */
+.single-img img { width: 100%; }
+.double-img img { width: 50%; border-left: 1px solid #1a1a1a; }
+.triple-img img { width: 33.333%; border-left: 1px solid #1a1a1a; }
+.quad-img img   { width: 25%; border-left: 1px solid #1a1a1a; }
+
+/* Старые плейсхолдеры (если картинок еще где-то нет) */
+.image-placeholder {
+    height: 100%;
+display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid #1a1a1a;
+    color: #444444;
+    font-size: 0.9rem;
+    background-color: #090909;
+}
+.double-img .image-placeholder { width: 50%; }
+.triple-img .image-placeholder { width: 33.333%; }
+.quad-img .image-placeholder { width: 25%; }
+
+/* --- НИЖНЯЯ ПАНЕЛЬ СТРЕЛОК --- */
+.bottom-controls {
+    position: fixed;
+    bottom: 25px;
+    left: calc(50% + 45px);
+    transform: translateX(-50%);
+    background-color: rgba(10, 10, 10, 0.9);
+    border: 1px solid #222222;
+    padding: 8px 20px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    z-index: 10;
+}
+
+.ctrl-btn {
+    background: none;
+    border: none;
+    color: #888888;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.ctrl-btn:hover {
+    color: #ffffff;
+}
+
+#slide-counter {
+    color: #ffffff;
+    font-size: 0.9rem;
+}
