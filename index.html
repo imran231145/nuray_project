@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,175 +8,173 @@
 </head>
 <body>
 
-    <aside class="sidebar">
+    <nav class="sidebar">
         <div class="nav-links">
-            <button class="nav-btn active" data-slide="1">01</button>
+            <button class="nav-btn" data-slide="1">01</button>
             <button class="nav-btn" data-slide="2">02</button>
             <button class="nav-btn" data-slide="3">03</button>
             <button class="nav-btn" data-slide="4">04</button>
             <button class="nav-btn" data-slide="5">05</button>
         </div>
-    </aside>
+    </nav>
 
     <main class="slider-container">
 
-        <section class="slide active" id="slide-0">
-    <div class="slide-info plan-slide-info">
-        <span class="slide-num">Welcome</span>
-        <h2>Project Plan</h2>
-        <p class="subtitle">What we will explore in this project:</p>
-        
-        <ol class="project-plan-list">
-            <li>Common unhealthy habits</li>
-            <li>Causes of health problems</li>
-            <li>Physical and mental health</li>
-            <li>Healthy lifestyle tips</li>
-            <li>Personal opinion</li>
-        </ol>
-
-        <button id="start-project-btn" class="start-btn">Start Project ➔</button>
-    </div>
-    <div class="slide-media single-img">
-        <div class="image-placeholder" style="background: linear-gradient(135deg, #111 0%, #002266 100%); color: #666;">
-            Health & Lifestyle Guide 2026
-        </div>
-    </div>
-</section>
-        
-        <section class="slide" id="slide-1">
+        <section class="slide active" id="slide-1">
             <div class="slide-info">
-                <span class="slide-num">01</span>
-                <h2>Modern Lifestyle <br>and Health Problems</h2>
-                <p class="subtitle">How modern lifestyle affects our health.</p>
+                <span class="slide-num">Intro</span>
+                <h2>Modern Lifestyle<br>and Health Problems</h2>
+                <p class="subtitle">How modern life impacts our physical and mental well-being.</p>
             </div>
             <div class="slide-media single-img">
-                <div class="image-placeholder">
-                    <img src="image/главная картина.jpg">
-                </div>
+                <img src="lifestyle.jpg" alt="Modern Lifestyle">
             </div>
         </section>
 
         <section class="slide" id="slide-2">
+            <div class="slide-info plan-slide-info">
+                <span class="slide-num">Plan</span>
+                <h2>Project Plan</h2>
+                <p class="subtitle">Key areas of focus in this presentation:</p>
+                
+                <div class="plan-cards-container">
+                    <div class="plan-card">
+                        <span class="card-num">1</span>
+                        <h3>Causes of health problems</h3>
+                    </div>
+                    <div class="plan-card">
+                        <span class="card-num">2</span>
+                        <h3>Common unhealthy habits</h3>
+                    </div>
+                    <div class="plan-card">
+                        <span class="card-num">3</span>
+                        <h3>Physical and mental health</h3>
+                    </div>
+                    <div class="plan-card">
+                        <span class="card-num">4</span>
+                        <h3>Healthy lifestyle tips</h3>
+                    </div>
+                    <div class="plan-card">
+                        <span class="card-num">5</span>
+                        <h3>Personal opinion</h3>
+                    </div>
+                </div>
+
+                <button id="start-project-btn" class="start-btn">Let's Begin ➔</button>
+            </div>
+            <div class="slide-media single-img">
+                <img src="plan_bg.jpg" alt="Project Roadmap">
+            </div>
+        </section>
+
+        <section class="slide" id="slide-3">
             <div class="slide-info">
-                <span class="slide-num">02</span>
-                <h2>Causes of <br>Health Problems</h2>
+                <span class="slide-num">01</span>
+                <h2>Causes of<br>Health Problems</h2>
+                
                 <div class="grid-features">
                     <div class="feature-item">
                         <span class="icon">📱</span>
                         <div>
                             <h3>Too Much Screen Time</h3>
-                            <p>Eye strain and poor sleep.</p>
+                            <p>Eye strain and poor sleep cycle.</p>
                         </div>
                     </div>
                     <div class="feature-item">
                         <span class="icon">🍔</span>
                         <div>
                             <h3>Unhealthy Food</h3>
-                            <p>Fast food and sugary drinks.</p>
+                            <p>Fast food addiction and sugary drinks.</p>
                         </div>
                     </div>
                     <div class="feature-item">
                         <span class="icon">🪑</span>
                         <div>
                             <h3>Lack of Activity</h3>
-                            <p>Long hours of sitting.</p>
+                            <p>Long hours of sitting and low energy.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="slide-media triple-img">
-                <div class="image-placeholder">
-                    <img src="image/зависимость.jpg" alt="object-fit: cover;">
-                </div>
-                <div class="image-placeholder">
-                    <img src="image/еда (2).jpg" alt="object-fit: cover;">
-                </div>
-                <div class="image-placeholder">
-                    <img src="image/боль.jpg" alt="object-fit: cover;">
-                </div>
+            <div class="slide-media single-img">
+                <img src="causes_main.jpg" alt="Causes of Health Problems">
             </div>
-        </section>
-
-        <section class="slide" id="slide-3">
+        </section><section class="slide" id="slide-4">
             <div class="slide-info">
-                <span class="slide-num">03</span>
-                <h2>Physical and <br>Mental Health</h2>
-                <div class="grid-features">
-                    <div class="feature-item">
-                        <span class="icon">🏋️‍♂️</span>
-                        <div>
-                            <h3>Physical Health</h3>
-                            <p>Obesity, back pain, heart diseases.</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">🧠</span>
-                        <div>
-                            <h3>Mental Health</h3>
-                            <p>Stress, anxiety and depression.</p>
-                        </div>
-                    </div>
-                </div>
+                <span class="slide-num">02</span>
+                <h2>Common Unhealthy<br>Habits</h2>
+                <p class="subtitle">Daily routines that secretly damage our body over time.</p>
             </div>
             <div class="slide-media double-img">
-                <div class="image-placeholder">
-                    <img src="image/нездоровый.jpg" alt="">
-                </div>
-                <div class="image-placeholder"><img src="image/депрессия.jpg" alt=""></div>
-            </div>
-        </section>
-
-        <section class="slide" id="slide-4">
-            <div class="slide-info">
-                <span class="slide-num">04</span>
-                <h2>Healthy Lifestyle Tips</h2>
-                <div class="grid-features tips">
-                    <div class="feature-item vertical">
-                        <span class="icon">🏃‍♀️</span>
-                        <h3>Exercise Regularly</h3>
-                    </div>
-                    <div class="feature-item vertical">
-                        <span class="icon">🥗</span>
-                        <h3>Eat Healthy Food</h3>
-                    </div>
-                    <div class="feature-item vertical">
-                        <span class="icon">🌙</span>
-                        <h3>Sleep 7-9 Hours</h3>
-                    </div>
-                    <div class="feature-item vertical">
-                        <span class="icon">💧</span>
-                        <h3>Drink Enough Water</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="slide-media quad-img">
-                <div class="image-placeholder"><img src="image/пробежка.jpg" alt=""></div>
-                <div class="image-placeholder"><img src="image/здоровая еда.jpg" alt=""></div>
-                <div class="image-placeholder"><img src="image/сон.jpg" alt=""></div>
-                <div class="image-placeholder"><img src="image/вода.jpg" alt=""></div>
+                <img src="habit1.jpg" alt="Habit 1">
+                <img src="habit2.jpg" alt="Habit 2">
             </div>
         </section>
 
         <section class="slide" id="slide-5">
             <div class="slide-info">
+                <span class="slide-num">03</span>
+                <h2>Physical and<br>Mental Health</h2>
+                <p class="subtitle">The critical balance between body strength and peace of mind.</p>
+            </div>
+            <div class="slide-media quad-img">
+                <img src="health1.jpg" alt="Health 1">
+                <img src="health2.jpg" alt="Health 2">
+            </div>
+        </section>
+
+        <section class="slide" id="slide-6">
+            <div class="slide-info">
+                <span class="slide-num">04</span>
+                <h2>Healthy Lifestyle<br>Tips</h2>
+                
+                <div class="grid-features tips">
+                    <div class="feature-item vertical">
+                        <span class="icon">🥗</span>
+                        <h3>Clean Diet</h3>
+                        <p>More greens and vegetables.</p>
+                    </div>
+                    <div class="feature-item vertical">
+                        <span class="icon">🏃‍♂️</span>
+                        <h3>Regular Workouts</h3>
+                        <p>At least 30 mins a day.</p>
+                    </div>
+                    <div class="feature-item vertical">
+                        <span class="icon">💧</span>
+                        <h3>Stay Hydrated</h3>
+                        <p>Drink plenty of water.</p>
+                    </div>
+                    <div class="feature-item vertical">
+                        <span class="icon">😴</span>
+                        <h3>Deep Sleep</h3>
+                        <p>7-8 hours nightly rest.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-media double-img">
+                <img src="tip1.jpg" alt="Tip 1">
+                <img src="tip2.jpg" alt="Tip 2">
+            </div>
+        </section>
+
+        <section class="slide" id="slide-7">
+            <div class="slide-info">
                 <span class="slide-num">05</span>
                 <h2>Personal Opinion</h2>
-                <p class="opinion-text">
-                    Technology makes life easier, but we should use it wisely. A healthy lifestyle helps us stay happy, active and productive.
-                </p>
+                <p class="opinion-text">"Small daily choices define our long-term health. Invest in your body before it demands it."</p>
             </div>
             <div class="slide-media single-img">
-                <div class="image-placeholder"><img src="image/веселый мужик.jpg" alt=""></div>
+                <img src="opinion.jpg" alt="Opinion Background">
             </div>
         </section>
 
     </main>
 
-    <footer class="bottom-controls">
-        <button id="prev-btn" class="ctrl-btn">❮ Previous</button>
-        <span id="slide-counter">1 / 5</span>
-        <button id="next-btn" class="ctrl-btn">Next ❯</button>
-    </footer>
+    <div class="bottom-controls">
+        <button class="ctrl-btn" id="prev-btn">⏮ Previous</button>
+        <span id="slide-counter">Intro / 5</span>
+        <button class="ctrl-btn" id="next-btn">Next ⏭</button>
+    </div>
 
     <script src="script.js"></script>
 </body>

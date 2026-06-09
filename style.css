@@ -10,18 +10,20 @@ body {
     color: #ffffff;
     display: flex;
     height: 100vh;
+    width: 100vw;
     overflow: hidden;
 }
 
 /* --- ЛЕВАЯ ПАНЕЛЬ НАВИГАЦИИ --- */
 .sidebar {
     width: 90px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #050505;
-    border-right: 1px solid #1c1c1c;
+    border-right: 1px solid #141414;
     z-index: 10;
 }
 
@@ -49,7 +51,6 @@ body {
     border-color: #444444;
 }
 
-/* Активная кнопка */
 .nav-btn.active {
     background-color: #0066ff;
     color: #ffffff;
@@ -57,40 +58,35 @@ body {
     box-shadow: 0 0 15px rgba(0, 102, 255, 0.4);
 }
 
-/* --- КОНТЕЙНЕР ДЛЯ СЛАЙДОВ --- */
+/* --- КОНТЕЙНЕР ДЛЯ ПОЛНОЭКРАННЫХ СЛАЙДОВ --- */
 .slider-container {
     flex: 1;
+    height: 100vh;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    padding-bottom: 100px;
-    gap: 25px;
-    overflow-y: auto;
+    background-color: #000000;
+    overflow: hidden;
 }
 
-/* --- СТИЛИ СЛАЙДОВ (ИСПРАВЛЕНО) --- */
+/* --- СТИЛИ ПОЛНОЭКРАННОГО СЛАЙДА (РАСТЯГИВАЕМ НА ВЕСЬ ЭКРАН) --- */
 .slide {
     display: flex;
+    width: 100%;
+    height: 100vh;
     background-color: #0d0d0d;
-    border: 1px solid #1a1a1a;
-    border-radius: 16px;
-    height: 380px;      /* Четко задаем высоту слайда */
-    min-height: 380px;
-    max-height: 380px;
     overflow: hidden;
-    transition: all 0.5s ease;
+    transition: opacity 0.4s ease;
 }
 
+/* Скрытие неактивных слайдов */
 .slide:not(.active) {
     display: none !important;
 }
 
-/* Текстовая зона (ИСПРАВЛЕНО) */
+/* Левая текстовая половина экрана */
 .slide-info {
-    width: 40%;         /* Фиксируем ширину текста, чтобы картинки его не сжимали */
-    min-width: 320px;   /* Минимальный порог, чтобы верстка не ломалась */
-    padding: 40px;
+    width: 50%;
+    height: 100%;
+    padding: 60px 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -101,253 +97,163 @@ body {
 
 .slide-num {
     position: absolute;
-    top: 25px;
-    left: 40px;
+    top: 40px;
+    left: 80px;
     background-color: #0066ff;
     color: #ffffff;
-    padding: 3px 10px;
+    padding: 4px 14px;
     border-radius: 20px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: bold;
 }
 
 .slide-info h2 {
-    font-size: 2rem;
-    line-height: 1.3;
-    margin-bottom: 15px;
+    font-size: 2.6rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
-.subtitle, .opinion-text {
+.subtitle {
     color: #888888;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
 }
 
-/* Внутренние списки элементов */
+.opinion-text {
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-style: italic;
+    line-height: 1.4;
+    border-left: 4px solid #0066ff;
+    padding-left: 25px;
+}
+
+/* Внутренние элементы */
 .grid-features {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-top: 15px;
+    gap: 20px;
+    margin-top: 20px;
 }
 
 .feature-item {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
 }
 
 .feature-item .icon {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    background: #141414;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    border: 1px solid #222;
 }
 
 .feature-item h3 {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     color: #ffffff;
+    margin-bottom: 4px;
 }
 
 .feature-item p {
-    font-size: 0.85rem;
-    color: #666666;
+    font-size: 0.9rem;
+    color: #777777;
 }
 
 .grid-features.tips {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
 }
 
 .feature-item.vertical {
     flex-direction: column;
     align-items: flex-start;
-    gap: 5px;
+    gap: 8px;
+    background: #111;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #222;
 }
 
-/* --- МЕДИА ЗОНА ДЛЯ КАРТИНОК (ОКОНЧАТЕЛЬНЫЙ ФИКС) --- */
+/* --- ПРАВАЯ ПОЛОВИНА С КАРТИНКАМИ (ЗАПОЛНЯЕТ ВСЮ ВЫСОТУ) --- */
 .slide-media {
-    flex: 1.8;          /* Занимает всю правую часть слайда */
+    width: 50%;
+    height: 100%;
     display: flex;
     background-color: #050505;
-    height: 100%;
     overflow: hidden;
 }
 
-/* Стили для реальных тегов картинок <img> внутри медиазоны */
 .slide-media img {
-    height: 100%;
-    object-fit: cover;  /* Картинка заполняет выделенный ей блок без искажений */
-    display: block;
-}
-
-/* Используем flex-basis и flex-grow, чтобы браузер жестко 
-   и пропорционально делил ширину медиазоны между картинками 
-*/
-
-/* 1 Слайд: одна картинка на 100% ширины */
-.single-img img {
-    flex: 1;
     width: 100%;
-}
-
-/* 2 Слайд: три картинки делят пространство строго поровну */
-.triple-img img {
-    flex: 1;
-    width: 33.333%;
-    border-left: 1px solid #1a1a1a;
-}
-
-/* 3 Слайд: две картинки делят пространство 50% на 50% */
-.double-img img {
-    flex: 1;
-    width: 50%;
-    border-left: 1px solid #1a1a1a;
-}
-
-/* 4 Слайд: четыре картинки делят пространство по 25% */
-.quad-img img {
-    flex: 1;
-    width: 25%;
-    border-left: 1px solid #1a1a1a;
-}
-
-/* Старые плейсхолдеры (на случай, если где-то еще нет картинок) */
-.image-placeholder {
-    flex: 1;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-left: 1px solid #1a1a1a;
-    color: #444444;
-    font-size: 0.9rem;
-    background-color: #090909;
-}
-
-/* --- НИЖНЯЯ ПАНЕЛЬ СТРЕЛОК --- */
-.bottom-controls {
-    position: fixed;
-    bottom: 25px;
-    left: calc(50% + 45px);
-    transform: translateX(-50%);
-    background-color: rgba(10, 10, 10, 0.9);
-    border: 1px solid #222222;
-    padding: 8px 20px;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    z-index: 10;
-}
-
-.ctrl-btn {
-    background: none;
-    border: none;
-    color: #888888;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-
-.ctrl-btn:hover {
-    color: #ffffff;
-}
-
-#slide-counter {
-    color: #ffffff;
-    font-size: 0.9rem;
-}
-
-/* Стили для реальных тегов картинок <img> внутри медиазоны */
-.slide-media img {
-    height: 100%;
-    object-fit: cover; /* Умное кадрирование: заполняет блок без растягивания */
+    object-fit: cover;
     display: block;
 }
 
-/* Автоматическое распределение ширины картинок */
-.single-img img { width: 100%; }
-.double-img img { width: 50%; border-left: 1px solid #1a1a1a; }
-.triple-img img { width: 33.333%; border-left: 1px solid #1a1a1a; }
-.quad-img img   { width: 25%; border-left: 1px solid #1a1a1a; }
+/* Сетки для слайдов с несколькими картинками (4 и 5 слайды) */
+.double-img img { flex: 1; width: 50%; border-left: 1px solid #161616; }
+.quad-img img   { flex: 1; width: 25%; border-left: 1px solid #161616; }
 
-/* Старые плейсхолдеры (если картинок еще где-то нет) */
-.image-placeholder {
-    height: 100%;
-display: flex;
-    align-items: center;
-    justify-content: center;
-    border-left: 1px solid #1a1a1a;
-    color: #444444;
-    font-size: 0.9rem;
-    background-color: #090909;
-}
-.double-img .image-placeholder { width: 50%; }
-.triple-img .image-placeholder { width: 33.333%; }
-.quad-img .image-placeholder { width: 25%; }
-
-/* --- НИЖНЯЯ ПАНЕЛЬ СТРЕЛОК --- */
-.bottom-controls {
-    position: fixed;
-    bottom: 25px;
-    left: calc(50% + 45px);
-    transform: translateX(-50%);
-    background-color: rgba(10, 10, 10, 0.9);
+/* --- СТИЛИ КАРТОЧЕК ПЛАНА --- */
+.plan-cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 100%;
+}.plan-card {
+    background: #111111;
     border: 1px solid #222222;
-    padding: 8px 20px;
-    border-radius: 30px;
+    border-radius: 12px;
+    padding: 18px 20px;
     display: flex;
     align-items: center;
-    gap: 25px;
-    z-index: 10;
+    gap: 15px;
+    transition: all 0.3s ease;
 }
 
-.ctrl-btn {
-    background: none;
-    border: none;
-    color: #888888;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: color 0.2s ease;
+.plan-card:hover {
+    background: #161616;
+    border-color: #383838;
+    transform: translateY(-2px);
 }
 
-.ctrl-btn:hover {
+.card-num {
+    background-color: #0066ff;
     color: #ffffff;
-}
-
-#slide-counter {
-    color: #ffffff;
-    font-size: 0.9rem;
-}
-
-/* --- СТИЛИ ДЛЯ СТАРТОВОГО СЛАЙДА (ПЛАНА) --- */
-.plan-slide-info {
-    justify-content: center !important; /* Центрируем контент по вертикали, чтобы кнопка не уходила вниз */
-    padding-top: 20px !important;       /* Уменьшаем верхний отступ */
-    padding-bottom: 20px !important;    /* Добавляем нижний отступ */
-}
-
-/* Красивый нумерованный список */
-.project-plan-list {
-    margin-top: 15px;
-    margin-bottom: 20px;
-    padding-left: 25px; /* Увеличили отступ, чтобы текст не сливался с цифрами */
-    color: #ccc;
-    text-align: left;
-}
-
-.project-plan-list li {
-    font-size: 1.05rem; /* Чуть-чуть уменьшили размер, чтобы всё точно поместилось по высоте */
-    margin-bottom: 8px; /* Немного уменьшили расстояние между строками */
-    line-height: 1.3;
-    color: #aaaaaa;
-    transition: color 0.3s ease;
-}
-
-.project-plan-list li::marker {
-    color: #0066ff;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: bold;
+    font-size: 1rem;
+    flex-shrink: 0;
 }
 
-.project-plan-list li:hover {
+.plan-card h3 {
+    font-size: 1rem;
+    color: #aaaaaa;
+    line-height: 1.3;
+    font-weight: 500;
+}
+
+.plan-card:hover h3 {
     color: #ffffff;
+}
+
+.plan-cards-container .plan-card:last-child {
+    grid-column: span 2;
 }
 
 /* Кнопка Старт */
@@ -356,22 +262,50 @@ display: flex;
     background-color: #0066ff;
     color: #ffffff;
     border: none;
-    padding: 10px 25px; /* Сделали кнопку чуть компактнее, чтобы она не обрезалась */
-    font-size: 0.95rem;
+    padding: 12px 30px;
+    font-size: 1rem;
     font-weight: bold;
     border-radius: 25px;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
-    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-    margin-top: 5px; /* Отступ сверху для кнопки */
+    transition: all 0.2s ease;
 }
 
 .start-btn:hover {
     background-color: #0052cc;
-    box-shadow: 0 6px 20px rgba(0, 102, 255, 0.5);
     transform: translateY(-2px);
 }
 
-.start-btn:active {
-    transform: translateY(0);
+/* --- КНОПКИ НАВИГАЦИИ ВНИЗУ --- */
+.bottom-controls {
+    position: fixed;
+    bottom: 30px;
+    left: calc(50% + 45px);
+    transform: translateX(-50%);
+    background-color: rgba(7, 7, 7, 0.95);
+    border: 1px solid #222222;
+    padding: 12px 28px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    z-index: 10;
+}
+
+.ctrl-btn {
+    background: none;
+    border: none;
+    color: #888888;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.ctrl-btn:hover {
+    color: #ffffff;
+}
+
+#slide-counter {
+    color: #ffffff;
+    font-size: 0.95rem;
 }
