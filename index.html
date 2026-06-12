@@ -3,179 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Lifestyle & Health</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Modern Lifestyle and Health Problems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .slider {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 8% 10%;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Затемнение фонов в стиле оригинала */
+        .slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 100%);
+            z-index: 1;
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+        }
+
+        /* Верхний номер слайда */
+        .slide-num {
+            position: relative;
+            z-index: 2;
+            font-size: 16px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 1px;
+        }
+
+        h1, h2 {
+            font-size: 56px;
+            font-weight: 300;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 25px;
+        }
+
+        .sub-line {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 300;
+        }
+
+        .sub-line::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Стили для плана (Слайд 2) */
+        .plan-list {
+            list-style: none;
+            margin-top: 10px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .plan-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+        }
+
+        .plan-idx {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-right: 30px;
+        }
+
+        /* Навигация (Кнопки-стрелки) */
+        .nav-container {
+            position: absolute;
+            bottom: 8%;
+            width: 80%;
+            left: 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            margin-left: auto; /* Прижимает кнопки вправо */
+            pointer-events: auto;
+        }.btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-prev {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: #fff;
+        }
+
+        .btn-next {
+            background: #f7ede2;
+            color: #000;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+    </style>
 </head>
 <body>
 
-    <nav class="sidebar">
-        <div class="nav-links">
-            <button class="nav-btn" data-slide="1">01</button>
-            <button class="nav-btn" data-slide="2">02</button>
-            <button class="nav-btn" data-slide="3">03</button>
-            <button class="nav-btn" data-slide="4">04</button>
-            <button class="nav-btn" data-slide="5">05</button>
+    <div class="slider">
+        
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1518152006812-edab29b069ac?q=80&w=1200');">
+            <div class="slide-num">01</div>
+            <div class="slide-content">
+                <h1>Modern lifestyle and health problems</h1>
+                <div class="sub-line">Include</div>
+            </div>
         </div>
-    </nav>
 
-    <main class="slider-container">
-
-        <section class="slide active" id="slide-1">
-            <div class="slide-info">
-                <span class="slide-num">Intro</span>
-                <h2>Modern Lifestyle<br>and Health Problems</h2>
-                <p class="subtitle">How modern life impacts our physical and mental well-being.</p>
-            </div>
-            <div class="slide-media single-img">
-                <img src="lifestyle.jpg" alt="Modern Lifestyle">
-            </div>
-        </section>
-
-        <section class="slide" id="slide-2">
-            <div class="slide-info plan-slide-info">
-                <span class="slide-num">Plan</span>
-                <h2>Project Plan</h2>
-                <p class="subtitle">Key areas of focus in this presentation:</p>
-                
-                <div class="plan-cards-container">
-                    <div class="plan-card">
-                        <span class="card-num">1</span>
-                        <h3>Causes of health problems</h3>
-                    </div>
-                    <div class="plan-card">
-                        <span class="card-num">2</span>
-                        <h3>Common unhealthy habits</h3>
-                    </div>
-                    <div class="plan-card">
-                        <span class="card-num">3</span>
-                        <h3>Physical and mental health</h3>
-                    </div>
-                    <div class="plan-card">
-                        <span class="card-num">4</span>
-                        <h3>Healthy lifestyle tips</h3>
-                    </div>
-                    <div class="plan-card">
-                        <span class="card-num">5</span>
-                        <h3>Personal opinion</h3>
-                    </div>
-                </div>
-
-                <button id="start-project-btn" class="start-btn">Let's Begin ➔</button>
-            </div>
-            <div class="slide-media single-img">
-                <img src="plan_bg.jpg" alt="Project Roadmap">
-            </div>
-        </section>
-
-        <section class="slide" id="slide-3">
-            <div class="slide-info">
-                <span class="slide-num">01</span>
-                <h2>Causes of<br>Health Problems</h2>
-                
-                <div class="grid-features">
-                    <div class="feature-item">
-                        <span class="icon">📱</span>
-                        <div>
-                            <h3>Too Much Screen Time</h3>
-                            <p>Eye strain and poor sleep cycle.</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">🍔</span>
-                        <div>
-                            <h3>Unhealthy Food</h3>
-                            <p>Fast food addiction and sugary drinks.</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">🪑</span>
-                        <div>
-                            <h3>Lack of Activity</h3>
-                            <p>Long hours of sitting and low energy.</p>
-                        </div>
-                    </div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200');">
+            <div class="slide-num">02</div>
+            <div class="slide-content">
+                <h2>Plan of<br>the project</h2>
+                <div class="plan-list">
+                    <div class="plan-item"><span class="plan-idx">01</span><span>Common unhealthy habits</span></div>
+                    <div class="plan-item"><span class="plan-idx">02</span><span>Causes of health problems</span></div>
+                    <div class="plan-item"><span class="plan-idx">03</span><span>Physical and mental health</span></div>
+                    <div class="plan-item"><span class="plan-idx">04</span><span>Healthy lifestyle tips</span></div>
+                    <div class="plan-item"><span class="plan-idx">05</span><span>Personal opinion</span></div>
                 </div>
             </div>
-            <div class="slide-media single-img">
-                <img src="causes_main.jpg" alt="Causes of Health Problems">
-            </div>
-        </section><section class="slide" id="slide-4">
-            <div class="slide-info">
-                <span class="slide-num">02</span>
-                <h2>Common Unhealthy<br>Habits</h2>
-                <p class="subtitle">Daily routines that secretly damage our body over time.</p>
-            </div>
-            <div class="slide-media double-img">
-                <img src="habit1.jpg" alt="Habit 1">
-                <img src="habit2.jpg" alt="Habit 2">
-            </div>
-        </section>
+        </div>
 
-        <section class="slide" id="slide-5">
-            <div class="slide-info">
-                <span class="slide-num">03</span>
-                <h2>Physical and<br>Mental Health</h2>
-                <p class="subtitle">The critical balance between body strength and peace of mind.</p>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200');">
+            <div class="slide-num">03</div>
+            <div class="slide-content">
+                <h2>Common<br>unhealthy<br>habits</h2>
+                <div class="sub-line"></div>
             </div>
-            <div class="slide-media quad-img">
-                <img src="health1.jpg" alt="Health 1">
-                <img src="health2.jpg" alt="Health 2">
-            </div>
-        </section>
+        </div>
 
-        <section class="slide" id="slide-6">
-            <div class="slide-info">
-                <span class="slide-num">04</span>
-                <h2>Healthy Lifestyle<br>Tips</h2>
-                
-                <div class="grid-features tips">
-                    <div class="feature-item vertical">
-                        <span class="icon">🥗</span>
-                        <h3>Clean Diet</h3>
-                        <p>More greens and vegetables.</p>
-                    </div>
-                    <div class="feature-item vertical">
-                        <span class="icon">🏃‍♂️</span>
-                        <h3>Regular Workouts</h3>
-                        <p>At least 30 mins a day.</p>
-                    </div>
-                    <div class="feature-item vertical">
-                        <span class="icon">💧</span>
-                        <h3>Stay Hydrated</h3>
-                        <p>Drink plenty of water.</p>
-                    </div>
-                    <div class="feature-item vertical">
-                        <span class="icon">😴</span>
-                        <h3>Deep Sleep</h3>
-                        <p>7-8 hours nightly rest.</p>
-                    </div>
-                </div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?q=80&w=1200');">
+            <div class="slide-num">04</div>
+            <div class="slide-content">
+                <h2>Causes of<br>health<br>problems</h2>
+                <div class="sub-line"></div>
             </div>
-            <div class="slide-media double-img">
-                <img src="tip1.jpg" alt="Tip 1">
-                <img src="tip2.jpg" alt="Tip 2">
-            </div>
-        </section>
+        </div>
 
-        <section class="slide" id="slide-7">
-            <div class="slide-info">
-                <span class="slide-num">05</span>
-                <h2>Personal Opinion</h2>
-                <p class="opinion-text">"Small daily choices define our long-term health. Invest in your body before it demands it."</p>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=80&w=1200');">
+            <div class="slide-num">05</div>
+            <div class="slide-content">
+                <h2>Physical<br>and mental<br>health</h2>
+                <div class="sub-line"></div>
             </div>
-            <div class="slide-media single-img">
-                <img src="opinion.jpg" alt="Opinion Background">
+        </div>
+
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1200');">
+            <div class="slide-num">06</div>
+            <div class="slide-content">
+                <h2>Healthy<br>lifestyle<br>tips</h2>
+                <div class="sub-line"></div>
             </div>
-        </section>
+        </div>
 
-    </main>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1200');">
+            <div class="slide-num">07</div>
+            <div class="slide-content">
+                <h2>Personal<br>opinion</h2>
+                <div class="sub-line"></div>
+            </div>
+        </div><div class="nav-container">
+            <div class="nav-buttons">
+                <button class="btn btn-prev" onclick="changeSlide(-1)">
+                    <svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>
+                </button>
+                <button class="btn btn-next" onclick="changeSlide(1)">
+                    <svg viewBox="0 0 24 24"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"/></svg>
+                </button>
+            </div>
+        </div>
 
-    <div class="bottom-controls">
-        <button class="ctrl-btn" id="prev-btn">⏮ Previous</button>
-        <span id="slide-counter">Intro / 5</span>
-        <button class="ctrl-btn" id="next-btn">Next ⏭</button>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        let currentIdx = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function changeSlide(direction) {
+            slides[currentIdx].classList.remove('active');
+            
+            currentIdx += direction;
+            
+            if (currentIdx >= slides.length) currentIdx = 0;
+            if (currentIdx < 0) currentIdx = slides.length - 1;
+            
+            slides[currentIdx].classList.add('active');
+        }
+
+        // Поддержка кликов по клавиатуре
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+    </script>
 </body>
 </html>
